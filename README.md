@@ -1,7 +1,7 @@
 # 🌾 CrowPanel 5.0 – Smart Agriculture Dashboard (LVGL)
 
 <p align="center">
-  <img src="https://github.com/createlabz/website_createlabz_picsv2/blob/main/3.5spi.jpg?raw=true" alt="CrowPanel 5.0 Dashboard Preview" width="400"/>
+  <img src="https://github.com/createlabz/website_createlabz_picsv2/blob/main/5inch.jpg?raw=true" alt="CrowPanel 5.0 Dashboard Preview" width="400"/>
 </p>
 
 <p align="center">

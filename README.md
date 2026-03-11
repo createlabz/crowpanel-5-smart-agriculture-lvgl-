@@ -1,153 +1,167 @@
-🌾 CrowPanel 5.0 – Smart Agriculture Dashboard (LVGL)
+# 🌾 CrowPanel 5.0 – Smart Agriculture Dashboard (LVGL)
 
-A fully working LVGL 8.3.10 + LovyanGFX setup for:
+<p align="center">
+  <img src="https://github.com/createlabz/website_createlabz_picsv2/blob/main/3.5spi.jpg?raw=true" alt="CrowPanel 5.0 Dashboard Preview" width="400"/>
+</p>
 
-🖥 CrowPanel ESP32 Display 5.0" V3 (800×480 RGB)
-⚡ ESP32-S3-WROOM-1-N4R8 (4MB Flash / 8MB PSRAM)
+<p align="center">
+  <strong>A fully working LVGL 8.3.10 + LovyanGFX setup for:</strong>
+</p>
 
------------------------------------------------------------------
-🛠 Software Setup Guide (Arduino IDE
------------------------------------------------------------------
-✅ Arduino IDE
+<p align="center">
+  🖥 <strong>CrowPanel ESP32 Display 5.0" V3 (800×480 RGB)</strong><br>
+  ⚡ <strong>ESP32-S3-WROOM-1-N4R8 (4MB Flash / 8MB PSRAM)</strong>
+</p>
 
-Recommended:
+---
 
-Arduino IDE 2.x
+## 📋 Table of Contents
 
-Tested with 2.3.7
+- [🛠 Software Setup Guide (Arduino IDE)](#-software-setup-guide-arduino-ide)
+- [📦 Required Libraries](#-required-libraries)
+- [⚙️ Board Configuration](#️-board-configuration)
+- [📁 Project Structure](#-project-structure)
+- [🚀 Features in This Demo](#-features-in-this-demo)
+- [🧠 Common Problems & Fixes](#-common-problems--fixes)
+- [🌱 Want to Explore?](#-want-to-explore)
+- [📜 License](#-license)
 
------------------------------------------------------------------
+---
 
-✅ Install ESP32 Board Package
-Step 1 — Add Board Manager URL
+## 🛠 Software Setup Guide (Arduino IDE)
 
-Go to:
+### ✅ Arduino IDE
 
-File → Preferences
+| Recommendation | Version |
+|----------------|---------|
+| **Recommended** | Arduino IDE 2.x |
+| **Tested With** | 2.3.7 |
 
+---
 
-Add to Additional Boards Manager URLs:
+### ✅ Install ESP32 Board Package
 
-https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json
+**Step 1 — Add Board Manager URL**
 
+Go to **File → Preferences**
 
-Click OK.
-
------------------------------------------------------------------
-Step 2 — Install ESP32 Package
-
-Go to:
-
-Tools → Board → Boards Manager
-
-
-Search:
-
-esp32
-
-
-Install:
-
-esp32 by Espressif Systems
-
------------------------------------------------------------------
-🎯 Recommended Core Version
-
-✔ Tested and confirmed working: 3.3.7
-✔ Alternative stable: 2.0.14
-
-⚠ Do NOT randomly mix versions.
-LVGL + LovyanGFX are sensitive to core versions.
-
------------------------------------------------------------------
-📚 Required Libraries
-
-Go to:
-
-Sketch → Include Library → Manage Libraries
+In the **"Additional Boards Manager URLs"** field, add: https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json
 
 
-Install the following:
+Click **OK** to save.
 
------------------------------------------------------------------
-1️⃣ LovyanGFX
+---
 
-Tested Version: 1.2.19
+**Step 2 — Install ESP32 Package**
 
------------------------------------------------------------------
-2️⃣ LVGL
+Go to **Tools → Board → Boards Manager**
 
-Search:
+In the Boards Manager window that opens:
+- Type `esp32` in the search box
+- Look for **"esp32 by Espressif Systems"**
+- Click **Install** (version 3.3.7 recommended)
 
-lvgl
+Wait for the installation to complete.
 
+---
 
-Install:
+### 🎯 Recommended Core Version
 
-8.3.10
+| Version | Status |
+|---------|--------|
+| **3.3.7** | ✅ Tested & Confirmed Working |
+| **2.0.14** | ✅ Alternative Stable |
 
-⚠ IMPORTANT
-DO NOT use LVGL 9.x
-This project is built specifically for LVGL 8.3.x
+> ⚠ **WARNING:** Do NOT randomly mix versions. LVGL + LovyanGFX are sensitive to core versions.
 
------------------------------------------------------------------
-⚙️ Board Configuration (CRITICAL)
+---
 
-Select:
+## 📦 Required Libraries
 
-Tools → Board → ESP32 Arduino → ESP32S3 Dev Module
+Go to **Sketch → Include Library → Manage Libraries**
 
------------------------------------------------------------------
+This will open the Library Manager. Search for and install each of the following:
 
-🔧 Core Settings
-Setting	Value
-USB CDC On Boot	Enabled
-CPU Frequency	240MHz (WiFi)
-Core Debug Level	None
+| Library | How to Find | Tested Version | Notes |
+|---------|-------------|----------------|-------|
+| **LovyanGFX** | Type "LovyanGFX" in search | 1.2.19 | Graphics driver for RGB panels |
+| **LVGL** | Type "LVGL" in search | **8.3.10** | ⚠ DO NOT use LVGL 9.x |
 
------------------------------------------------------------------
-💾 Flash Settings (VERY IMPORTANT)
-| Setting          | Value                              |
-| ---------------- | ---------------------------------- |
-| Flash Mode       | QIO 80MHz                          |
-| Flash Size       | 4MB (32Mb)                         |
-| Partition Scheme | Huge APP (3MB No OTA / 1MB SPIFFS) |
+> ⚠ **CRITICAL:** This project is built specifically for **LVGL 8.3.x**. Version 9.x will NOT work.
 
-If incorrect, you will see:
+---
 
-Detected size(4096k) smaller than the size in the binary image header(16384k)
+## ⚙️ Board Configuration
 
------------------------------------------------------------------
+### Select Board
 
-🧠 PSRAM Settings (REQUIRED)
-PSRAM → OPI PSRAM
+Go to **Tools → Board → ESP32 Arduino → ESP32S3 Dev Module**
 
+---
 
-⚠ REQUIRED for 800×480 LVGL projects
+### 🔧 Core Settings
 
-Without PSRAM → crash / freeze / bootloop
+Go to **Tools** and set the following:
 
------------------------------------------------------------------
-🔌 USB Settings
-| Setting      | Value                 |
-| ------------ | --------------------- |
-| USB Mode     | Hardware CDC and JTAG |
-| Upload Mode  | USB-OTG CDC (TinyUSB) |
-| Upload Speed | 921600                |
+| Setting | Value |
+|---------|-------|
+| **USB CDC On Boot** | Enabled |
+| **CPU Frequency** | 240MHz (WiFi) |
+| **Core Debug Level** | None |
 
+---
 
------------------------------------------------------------------
-🧹 First Upload Recommendation
+### 💾 Flash Settings (VERY IMPORTANT)
 
-Enable:
+Go to **Tools** and set the following:
 
-Tools → Erase All Flash Before Sketch Upload → Enabled
+| Setting | Value |
+|---------|-------|
+| **Flash Mode** | QIO 80MHz |
+| **Flash Size** | 4MB (32Mb) |
+| **Partition Scheme** | Huge APP (3MB No OTA / 1MB SPIFFS) |
 
+> ⚠ If incorrect, you will see: `Detected size(4096k) smaller than the size in the binary image header(16384k)`
+
+---
+
+### 🧠 PSRAM Settings (REQUIRED)
+
+Go to **Tools → PSRAM** and set:
+
+| Setting | Value |
+|---------|-------|
+| **PSRAM** | **OPI PSRAM** |
+
+> ⚠ **REQUIRED** for 800×480 LVGL projects. Without PSRAM → crash / freeze / bootloop.
+
+---
+
+### 🔌 USB Settings
+
+Go to **Tools** and set the following:
+
+| Setting | Value |
+|---------|-------|
+| **USB Mode** | Hardware CDC and JTAG |
+| **Upload Mode** | USB-OTG CDC (TinyUSB) |
+| **Upload Speed** | 921600 |
+
+---
+
+### 🧹 First Upload Recommendation
+
+Go to **Tools → Erase All Flash Before Sketch Upload** and set:
+
+| Setting | Value |
+|---------|-------|
+| **Erase All Flash Before Sketch Upload** | **Enabled** |
 
 After successful upload, you may disable it.
 
------------------------------------------------------------------
-📁 Project Folder Structure
+---
+
+## 📁 Project Structure
 
 Your Arduino sketch folder MUST look like this:
 
@@ -156,111 +170,3 @@ final-crowpanel/
 ├── final-crowpanel.ino
 ├── gfx_conf.h
 └── lv_conf.h
-
------------------------------------------------------------------
-❗ Important Rules (Based on Real Testing)
-🔹 lv_conf.h
-
-MUST be inside your sketch folder
-
-NOT inside Arduino/libraries/lvgl/
-
-Must match LVGL 8 configuration
-
------------------------------------------------------------------
-🔹 gfx_conf.h
-
-Must NOT contain setup()
-
-Must NOT contain loop()
-
-Must define RGB panel configuration
-
-Must initialize GT911 correctly
-
------------------------------------------------------------------
-🔹 Fonts
-
-If you use fonts like:
-
-lv_font_montserrat_36
-lv_font_montserrat_22
-
------------------------------------------------------------------
-Make sure they are enabled in:
-
-lv_conf.h
-
------------------------------------------------------------------
-🚀 Features in This Demo
-
-✔ RGB 800×480 Display
-
-✔ LVGL 8.3.10
-
-✔ LovyanGFX RGB Driver
-
-✔ Circular Gauge Cards
-
-✔ Live Updating Sensor Simulation
-
-✔ Clean Dark UI
-
------------------------------------------------------------------
-🧠 Common Problems & Fixes
-
-❌ UI Freezing / Crashing
-
-Usually caused by:
-
-Wrong PSRAM setting
-
-LVGL 9 installed instead of 8.3
-
-Wrong Flash Size
-
-Wrong ESP32 core version
-
------------------------------------------------------------------
-❌ Flash Size Error
-
-Fix:
-
-Flash Size → 4MB (32Mb)
-Partition → Huge APP
-
------------------------------------------------------------------
-
-🧪 Tested Configuration
-
-| Component   | Version   |
-| ----------- | --------- |
-| Arduino IDE | 2.3.7     |
-| ESP32 Core  | 3.3.7     |
-| LovyanGFX   | 1.2.19    |
-| LVGL        | 8.3.10    |
-| Flash       | 4MB       |
-| PSRAM       | OPI PSRAM |
-
------------------------------------------------------------------
-
-🌱 Want to Explore?
-
-Real sensor integration (I2C / RS485 / Modbus)
-
-Multi-page UI with swipe
-
-WiFi dashboard sync
-
-ESP-NOW remote nodes
-
-Data logging to SD card
-
-OTA firmware update
-
------------------------------------------------------------------
-📜 License
-
-Open-source demo project for CrowPanel 5.0 + LVGL.
-
------------------------------------------------------------------
